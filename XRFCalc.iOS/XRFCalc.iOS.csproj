@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-ios26.0</TargetFramework>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <CodesignKey>Apple Development: Created via API (F2SG848B57)</CodesignKey>
+    <CodesignProvision>VS: com.IOSPCaussin.XRFCalcForIOS Development</CodesignProvision>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>C:\Users\pierr\OneDrive\Documents\documents personnels\my-release-key.keystore</AssemblyOriginatorKeyFile>
+    <ProvisioningType>automatic</ProvisioningType>
+    <AssemblyTitle>XRFCalcForIOS</AssemblyTitle>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <BuildIpa>True</BuildIpa>
+    <IpaPackageName>XRFCalc</IpaPackageName>
+    <MtouchDebug>True</MtouchDebug>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <BuildIpa>True</BuildIpa>
+    <IpaPackageName>XRFCalc</IpaPackageName>
+    <MtouchDebug>True</MtouchDebug>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios26.0'">
+    <CodesignKey>Apple Development: Created via API (F2SG848B57)</CodesignKey>
+    <CodesignProvision>VS: com.IOSPCaussin.XRFCalcForIOS Development</CodesignProvision>
+  </PropertyGroup>
+
+  <!-- Keep package references and project references -->
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Controls.WebView" />
+    <PackageReference Include="Avalonia.iOS" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XRFCalc\XRFCalc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaUILicenseKey Include="avln_off_key:v1:AQAAAKcAAAAfiwgAAAAAAAADbU6xCsJQELPooJtbVdA/aMFudhMLTm6io1zfO+To4129e7X497YgOtRASEgIJBr9MMl22bY3xeO26DXqOAb/mna6hic49gQJGIMOBQImjkoBIdR4/2nTA/sg7DQ9oSVYDvMrlhfCdvVnAVJZbv1mWJ0FsYAARyEbf5/UIN2VxLBXdjivhW1jQl42Sh5VZ43CHXO11RtwD8pZ5gAAAAABAAASUn5b8/vyQZEAhptkpCLpXQ+iSgzywxM/NeDXkYozOiCL6i2Kz7TLVmxDaBZrzXCCYjKebuOewk9LY93KJRyfuOxjNqO8cQrrG11kkk2eBpvEPhBXSsv0N1TS6Za3ZFdVLt3OzS64/RytepE0HWM4HFHUBF4JrE2IX3i3z1yc4bXerVBmcDEQ3N8n8uTI4XNsW0eld6zjv0K2ifwzG1HBbEpc5xi65V16JfadS5bJjPKcTWy2bAo0UUkqnNvk5MmsHaXKqxS0LGoz/0hqGGteuVX6xAxqaoGeHlDyDBejPP8WT318S5JbA033w18VcpB0IbwGaMCNAcb0isrbpO5i:AQAAAKoAAAAfiwgAAAAAAAADbU6xCsIwFLTo4CK4VQX9gxbsZjex4OQmOspr8pCHManvJRb/3hREh3pw3HHHwSWDH0bFplh3pnpcZp0mkUOwr3HUJTzBOEuQgVJokMFjZqhmYEJJt5823znr2RnJD6gJ5v38jPWJsF38WQDftGvtql8dGbECD3smnX6fNMDxSqacFWdw2rDTQfmyDkIWRSZB4IolB+vpjm+Rc+ST6gAAAAABAAABcTHFJARJJvyTE+FLoLb916kFh0FhIU6xT5pUOQ7HYz6BU+C/fq/Fi6q+LmQBYD/XIUKu3zvgstGsRYVFC37kTS2qpWytWF8kd9dXR3isorvYz1zl23e5jpCTuOaJdrdRQL0kJhGalUYQjpfFSs+Z2jdj8L//JzKqUgZalGSfaCR7thMnmMHvdpIEZJAGWEMGM7aJDF3BKYgjqwtWSoESfUnH5USA97Mv2DnrBTiWX93fTDiSxInPWzXlvBLl4njFLJUBb0K+wGsXrA+Rh00K9ebq/cMaCytmZdK0eCtHqLJVzJTQNbdXZS35neiUwHTfZdvSgoPFiAcCYOVWXxCA" />
+  </ItemGroup>
+
+  <!-- Asset catalog for app icons -->
+  <ItemGroup>
+    <!-- Add the entire asset catalog so the iOS toolchain packages the AppIcon asset -->
+    <ImageAsset Include="Assets.xcassets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="iTunesArtwork" />
+    <None Remove="iTunesArtwork%402x" />
+  </ItemGroup>
+
+  <!-- Keep launch screen as image asset (no CopyToOutputDirectory) -->
+  <ItemGroup>
+    <ImageAsset Include="Resources\LaunchScreen.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <iTunesArtwork Include="iTunesArtwork" />
+    <iTunesArtwork Include="iTunesArtwork@2x" />
+  </ItemGroup>
+</Project>
