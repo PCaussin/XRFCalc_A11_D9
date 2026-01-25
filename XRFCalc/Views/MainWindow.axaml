@@ -6,7 +6,6 @@
         xmlns:views="clr-namespace:XRFCalc.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="XRFCalc.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
         Title="XRFCalc">
         <views:MainView />
 </Window>

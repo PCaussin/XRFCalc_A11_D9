@@ -252,13 +252,29 @@ public static class AbsorptionCalc
         return true;
     }
 
+    private static int Zalt(int z)
+    {
+        int za = z;
+        switch (z)
+        {
+            case 103:
+            case 105:
+                za = 1;
+                break;
+            case 104:
+                za = 60;
+                break;
+        }
+        return za;
+    }
+
     public static float Absorption(int z, float en)
     {
         if (!initialized)
             return 0.0f;
         if (z <= 0 || z > Chemistry.MaxElementsD) return 0.0f;
         if (en <= 0 || en > 100) return 0.0f;
-        ElementData elem = elements[z];
+        ElementData elem = elements[Zalt(z)];
         double x = Math.Log(en * 1000.0);
         int k = 0;
         float xl = elem.photo[0].energyLog;
@@ -284,7 +300,7 @@ public static class AbsorptionCalc
             return 0.0f;
         if (z <= 0 || z > Chemistry.MaxElementsD) return 0.0f;
         if (en <= 0 || en > 100) return 0.0f;
-        ElementData elem = elements[z];
+        ElementData elem = elements[Zalt(z)];
         double x = Math.Log(en * 1000.0);
         if (x < elem.scatter[0].energyLog || x > elem.scatter[^1].energyLog)
             return 0.0f;
@@ -312,7 +328,7 @@ public static class AbsorptionCalc
             return 0.0f;
         if (z <= 0 || z > Chemistry.MaxElementsD) return 0.0f;
         if (en <= 0 || en > 100) return 0.0f;
-        ElementData elem = elements[z];
+        ElementData elem = elements[Zalt(z)];
         double x = Math.Log(en * 1000.0);
         if (x < elem.scatter[0].energyLog || x > elem.scatter[^1].energyLog)
             return 0.0f;
@@ -407,7 +423,7 @@ public static class AbsorptionCalc
         if (!AbsorptionCalc.IsInitialized || lineOrEdge.Length < 2) return 0.0f;
         int z = VerifyLineName(ref lineOrEdge);
         if (z == 0 || lineOrEdge.Length < 4) return 0.0f;
-        ElementData elem = elements[z];
+        ElementData elem = elements[Zalt(z)];
         char edge = TranslateAccented(lineOrEdge[3]);
         int edgeNum = 0;
         float x = 0;
@@ -457,7 +473,7 @@ public static class AbsorptionCalc
     {
         if (!initialized)
             return 0.0f;
-        return Chemistry.normalGas[z] == 0 ? elements[z].density : Chemistry.normalGas[z] * Chemistry.gafAtomWeight[z] / 22414.0f;
+        return Chemistry.normalGas[z] == 0 ? elements[Zalt(z)].density : Chemistry.normalGas[z] * Chemistry.gafAtomWeight[z] / 22414.0f;
     }
 
     public class LineInfo
