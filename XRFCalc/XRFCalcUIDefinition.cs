@@ -27,16 +27,14 @@ public class XRFCalcUIDefinition
     }
 
 
-    static string help = "coucou";
-
-    private static TabItem helpPage;
+    private static readonly TabItem helpPage = new () { Header = "Help", Background = new SolidColorBrush(Colors.Gray), Foreground = new SolidColorBrush(Colors.Black) };
 
     public static void InitializeApplication(TabControl tab, IStorageProvider? storageProvider)
     {
         MainTab = tab;
         var item1 = new TabItem() { Header = "Chemistry", Background = new SolidColorBrush(Colors.Blue), Foreground = new SolidColorBrush(Colors.White) };
         var item2 = new TabItem() { Header = "Radiation", Background = new SolidColorBrush(Colors.Navy), Foreground = new SolidColorBrush(Colors.White) };
-        helpPage = new TabItem() { Header = "Help", Background = new SolidColorBrush(Colors.Gray), Foreground = new SolidColorBrush(Colors.Black) };
+        //helpPage = new TabItem() { Header = "Help", Background = new SolidColorBrush(Colors.Gray), Foreground = new SolidColorBrush(Colors.Black) };
         tab.Items.Add(item1);
         tab.Items.Add(item2);
         tab.Items.Add(helpPage);
@@ -65,17 +63,17 @@ public class XRFCalcUIDefinition
             //
             item1.Content = XRFCalcContent.ChemGrid;
             item2.Content = XRFCalcContent.RadGrid;
-            MainTab.SelectionChanged += (s, e) =>
-            {
-                if (TabIndex == 2)
-                {
-                    UpdateHelp();
-                }
-            };
+            //MainTab.SelectionChanged += (s, e) =>
+            //{
+            //    if (TabIndex == 2)
+            //    {
+            //        //UpdateHelp();
+            //    }
+            //};
             Stream hlps = AssetLoader.Open(new Uri("Assets/helpFile.htm", UriKind.Relative), new Uri("avares://XRFCalc"));
             help = new StreamReader(hlps).ReadToEnd();
             hlps.Dispose();
-            //UpdateHelp();
+            UpdateHelp();
         }
     }
 
@@ -83,9 +81,10 @@ public class XRFCalcUIDefinition
     {
         try
         {
+            helpPage.Content = "Loading ...";
             NativeWebView webView = new();
-            //webView.NavigateToString(ChangeFontSize(help, FontSizeFactor));
-            webView.Navigate(new Uri("https://sites.google.com/view/xrfcalc/help"));
+            webView.NavigateToString(ChangeFontSize(help, FontSizeFactor));
+            //webView.Navigate(new Uri("https://sites.google.com/view/xrfcalc/help"));
             helpPage.Content = webView;
         }
         catch (Exception ex)
