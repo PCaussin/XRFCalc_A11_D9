@@ -29,6 +29,7 @@ public class XRFCalcUIDefinition
 
     private static readonly TabItem helpPage = new () { Header = "Help", Background = new SolidColorBrush(Colors.Gray), Foreground = new SolidColorBrush(Colors.Black) };
 
+    private static string help = "Loading ...";
     public static void InitializeApplication(TabControl tab, IStorageProvider? storageProvider)
     {
         MainTab = tab;
